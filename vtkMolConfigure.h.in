@@ -1,0 +1,39 @@
+/*=========================================================================
+
+  Name:        vtkMolConfigure.h
+
+  Author:      David Borland, The Renaissance Computing Institute (RENCI)
+
+  Copyright:   The Renaissance Computing Institute (RENCI)
+
+  License:     Licensed under the RENCI Open Source Software License v. 1.0.
+               
+               See included License.txt or 
+               http://www.renci.org/resources/open-source-software-license
+               for details.
+
+=========================================================================*/
+
+#ifndef vtkMolConfigure_h
+#define vtkMolConfigure_h
+
+#cmakedefine vtkMol_BUILD_SHARED_LIBS
+#ifndef vtkMol_BUILD_SHARED_LIBS
+# define vtkMol_STATIC
+#endif
+
+#if defined(_MSC_VER) && !defined(vtkMol_STATIC)
+# pragma warning ( disable : 4275 )
+#endif
+
+#if defined(WIN32) && !defined(vtkMol_STATIC)
+# if defined(vtkMol_EXPORTS)
+#  define VTK_MOL_EXPORT __declspec( dllexport ) 
+# else
+#  define VTK_MOL_EXPORT __declspec( dllimport ) 
+# endif
+#else
+# define VTK_MOL_EXPORT
+#endif
+
+#endif
